@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.mindgap.daily</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>@PYTHON@</string>
+    <string>-m</string>
+    <string>mindgap</string>
+    <string>tick</string>
+  </array>
+  <key>WorkingDirectory</key><string>@REPO@</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key><string>@PATH@</string>
+    <key>HOME</key><string>@HOME@</string>
+    <key>PYTHONPATH</key><string>@REPO@</string>
+    <key>PYTHONUNBUFFERED</key><string>1</string>
+    <key>PYTHONUTF8</key><string>1</string>
+  </dict>
+  <!-- StartCalendarInterval never fired in the spike and only follows the machine timezone.
+       Poll every 60 s; `tick` decides in America/New_York whether the 18:00 trigger is due. -->
+  <key>StartInterval</key><integer>60</integer>
+  <key>RunAtLoad</key><true/>
+  <key>ProcessType</key><string>Background</string>
+  <key>StandardOutPath</key><string>@ARCHIVE@/logs/launchd.out.log</string>
+  <key>StandardErrorPath</key><string>@ARCHIVE@/logs/launchd.err.log</string>
+</dict>
+</plist>
