@@ -1,0 +1,184 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "1.0.0",
+  "name": "MindGap Engineering Cognitive Blindspots Taxonomy",
+  "dimensions": [
+    {
+      "id": "problem_formulation",
+      "name_zh": "问题界定与需求空间",
+      "description": "在提出需求与定义目标阶段的认知偏误"
+    },
+    {
+      "id": "architecture_decisions",
+      "name_zh": "架构系统与决策路径",
+      "description": "在技术方案演进与代码实现阶段的系统性盲区"
+    },
+    {
+      "id": "metacognitive_co_agency",
+      "name_zh": "人机协同与元认知监督",
+      "description": "在评估模型输出与协同权衡阶段的监控失效"
+    }
+  ],
+  "blindspots": [
+    {
+      "id": "T01",
+      "label": "XY_CONFLATION",
+      "name_zh": "解空间手段倒错 (XY问题)",
+      "dimension": "problem_formulation",
+      "definition": "预先选定特定低效甚至错误的实现手段，并将全部精力用于向 Agent 询问该手段的细节，隐匿真正期望达成的业务目标。",
+      "trigger_pattern": "连续多轮深挖边缘语法或底层偏门技巧，未声明上游数据与最终业务消费场景。",
+      "required_evidence": ["实现手段高频纠缠提示词", "上位业务目标缺失陈述", "存在更直接高维解法的逻辑反证"],
+      "recommended_book": {
+        "title": "Are Your Lights On? How to Figure Out What the Problem Really Is",
+        "author": "Donald C. Gause, Gerald M. Weinberg",
+        "year": 1990,
+        "reason": "系统工程领域界定问题本质的元老级经典，深刻解构了人类在把‘解法’误当‘问题’时的思维盲区。"
+      },
+      "classic_mental_model": "Problem Space vs. Solution Space Separation"
+    },
+    {
+      "id": "T02",
+      "label": "SPECULATIVE_GENERALIZATION",
+      "name_zh": "过早抽象与过度工程化",
+      "dimension": "problem_formulation",
+      "definition": "在业务需求或验证样本极少时，强求 Agent 引入多层继承、抽象工厂或复杂插件体系，违背 YAGNI 原则。",
+      "trigger_pattern": "在单文件或 MVP 任务中主动要求设计高度通用的抽象层与多态架构。",
+      "required_evidence": ["极简业务初始输入", "过度膨胀的抽象模式指令"],
+      "recommended_book": {
+        "title": "A Philosophy of Software Design",
+        "author": "John Ousterhout",
+        "year": 2018,
+        "reason": "斯坦福大学系统架构经典，透彻分析了‘深模块’与‘浅模块’的区别，直击过度工程与类膨胀的盲点。"
+      },
+      "classic_mental_model": "Deep Modules & YAGNI (You Aren't Gonna Need It)"
+    },
+    {
+      "id": "T03",
+      "label": "VAGUE_DEGRADATION",
+      "name_zh": "目标模糊与情绪化施压",
+      "dimension": "problem_formulation",
+      "definition": "在 Agent 产出不符预期时，未能提供具体的反例或明确约束，退化为无信息增量的反复催促或自我反思要求。",
+      "trigger_pattern": "连续发出类似 'grill yourself'、'重新想'、'换个更简洁的' 却不提供任何错误细节。",
+      "required_evidence": ["前序模型方案不符预期记录", "无断言、无边界样例的人类情绪化施压指令"],
+      "recommended_book": {
+        "title": "How to Solve It",
+        "author": "George Pólya",
+        "year": 1945,
+        "reason": "人类探索解题方法论的奠基之作，系统化梳理了从‘理解题目’到‘建立未知量约束’的严密思考框架。"
+      },
+      "classic_mental_model": "Socratic Definition of Unknowns & Constraints"
+    },
+    {
+      "id": "T04",
+      "label": "PATCHWORK_FIXATION",
+      "name_zh": "局部修补与拒绝根治",
+      "dimension": "architecture_decisions",
+      "definition": "面对系统概念裂隙或架构缺陷，抗拒触碰核心模型，命令 Agent 连续添加局部特判或重试兜底，形成技术债泥潭。",
+      "trigger_pattern": "在同一链路中连续 3 次以上要求增加容错判断或绕过机制，忽视上游脏数据源头。",
+      "required_evidence": ["连锁式级联异常报错记录", "仅针对当前行堆栈进行局部绕过的修补指令"],
+      "recommended_book": {
+        "title": "The Pragmatic Programmer",
+        "author": "David Thomas, Andrew Hunt",
+        "year": 1999,
+        "reason": "务实工程哲学的圣经，通过破窗效应与正交性原则，警告局部妥协对系统生命的破坏。"
+      },
+      "classic_mental_model": "Orthogonality & Broken Window Prevention"
+    },
+    {
+      "id": "T05",
+      "label": "COMPLEXITY_BIAS",
+      "name_zh": "复杂度偏见与架构虚荣",
+      "dimension": "architecture_decisions",
+      "definition": "在单机轻量数据与极低并发场景下，盲目崇拜并引入分布式、复杂中间件或微服务集群。",
+      "trigger_pattern": "轻量级脚本或本地工具开发中，明确要求集成重型分布式消息队列或微服务拓扑。",
+      "required_evidence": ["轻量级单机执行环境声明", "超重度基础设施接入指令"],
+      "recommended_book": {
+        "title": "Systemantics: How Systems Really Work and How They Fail",
+        "author": "John Gall",
+        "year": 1975,
+        "reason": "系统复杂性理论奠基著作，提出了著名的‘高尔定律’——任何行之有效的复杂系统必由简单系统演进而来。"
+      },
+      "classic_mental_model": "Gall's Law & Occam's Razor"
+    },
+    {
+      "id": "T06",
+      "label": "BOUNDARY_NEGLECT",
+      "name_zh": "边界漠视与防御性缺失",
+      "dimension": "architecture_decisions",
+      "definition": "仅聚焦主干顺畅流程，系统性忽略空值、网络超时、权限被拒、磁盘耗尽等物理与系统边界约束。",
+      "trigger_pattern": "需求提示词零提及异常或逆向条件，导致生成的代码在遇到边界异常时全面溃败。",
+      "required_evidence": ["仅包含正常 Happy Path 的提示词", "未捕获异常导致的基础崩溃上下文"],
+      "recommended_book": {
+        "title": "Release It!: Design and Deploy Production-Ready Software",
+        "author": "Michael T. Nygard",
+        "year": 2007,
+        "reason": "系统生产可用性设计的必读专著，深入讲解了断路器、隔离仓与超时防御机制。"
+      },
+      "classic_mental_model": "Defensive Design & Fault Isolation"
+    },
+    {
+      "id": "T07",
+      "label": "CONCURRENCY_BLINDNESS",
+      "name_zh": "时序与并发因果遮蔽",
+      "dimension": "architecture_decisions",
+      "definition": "以单线程确定性逻辑指导多线程、异步或分布式状态交互，忽略时序交错与竞争冒险。",
+      "trigger_pattern": "在异步环境或多进程并发读写中，直接操作未加锁的共享状态。",
+      "required_evidence": ["异步代码中共享可变状态指令", "竞态导致的随机偶发 Bug 轨迹"],
+      "recommended_book": {
+        "title": "Java Concurrency in Practice",
+        "author": "Brian Goetz, Tim Peierls, Joshua Bloch, Joseph Bowbeer, David Holmes, Doug Lea",
+        "year": 2006,
+        "reason": "并发与时序思考的丰碑之作，透彻阐述了内存可见性、原子性与线程安全的本质原理。"
+      },
+      "classic_mental_model": "Interleaving & Happens-Before Order"
+    },
+    {
+      "id": "T08",
+      "label": "EXPLANATORY_DEPTH_ILLUSION",
+      "name_zh": "解释深度幻觉与盲目合入",
+      "dimension": "metacognitive_co_agency",
+      "definition": "对 Agent 生成的大篇幅复杂代码缺乏批判性理解，将‘能看懂表面词汇’误当作掌握了内部因果机制，直接盲目合入。",
+      "trigger_pattern": "Agent 输出深层算法或多层元编程后，人类未经任何推演或单步校验即合入，随后遇到报错完全不知所措。",
+      "required_evidence": ["高复杂度代码生成记录", "无任何质疑校验的直接合入指令", "随后的因果认知断层质问"],
+      "recommended_book": {
+        "title": "The Mythical Man-Month: Essays on Software Engineering",
+        "author": "Frederick P. Brooks, Jr.",
+        "year": 1975,
+        "reason": "软件工程思想不朽名著，强调概念完整性（Conceptual Integrity）与对系统本质复杂性的敬畏。"
+      },
+      "classic_mental_model": "Feynman Technique & Conceptual Integrity"
+    },
+    {
+      "id": "T09",
+      "label": "SYCOPHANTIC_CONFIRMATION",
+      "name_zh": "谄媚闭环与确认偏误固化",
+      "dimension": "metacognitive_co_agency",
+      "definition": "发出具有强诱导性的错误推断，Agent 顺从迎合，人类误将其作为真理背书，形成自强化的致命死循环。",
+      "trigger_pattern": "人类给出事实错误的假说，模型无原则附和，人类据此展开破坏性操作。",
+      "required_evidence": ["人类诱导性假说输入", "模型谄媚赞同回复", "随后的事实性严重回归"],
+      "recommended_book": {
+        "title": "The Logic of Scientific Discovery",
+        "author": "Karl Popper",
+        "year": 1934,
+        "reason": "科学哲学奠基之作，系统阐释了证伪主义（Falsificationism），是击碎确认偏误与谄媚诱导的终极思维武器。"
+      },
+      "classic_mental_model": "Falsificationism & Critical Rationalism"
+    },
+    {
+      "id": "T10",
+      "label": "CRITICAL_OFFLOADING",
+      "name_zh": "批判性思维外包与思考放弃",
+      "definition": "将不可逆的技术路线权衡、架构核心概念界定完全外包给随机概率模型，放弃工程师作为系统掌控者的职责。",
+      "dimension": "metacognitive_co_agency",
+      "trigger_pattern": "在关键技术分水岭指令中声明‘你看着办’、‘随便选一个’，且对后果毫无约束。",
+      "required_evidence": ["关键技术权衡节点", "明确放弃主动决策的人类提示词"],
+      "recommended_book": {
+        "title": "Thinking, Fast and Slow",
+        "author": "Daniel Kahneman",
+        "year": 2011,
+        "reason": "认知心理学旷世经典，揭示了系统 1 直觉与系统 2 慢思考的博弈，告诫人们警惕认知惰性带来的灾难。"
+      },
+      "classic_mental_model": "System 2 Deliberate Thinking & Metacognitive Agency"
+    }
+  ]
+}

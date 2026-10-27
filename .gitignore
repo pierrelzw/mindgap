@@ -1,0 +1,6 @@
+# raw prompts, model outputs and logs from the spike: personal data
+spike/out/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store

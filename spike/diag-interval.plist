@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+<key>Label</key><string>com.mindgap.spike.diag</string>
+<key>ProgramArguments</key><array>
+<string>/Users/ai/.local/share/mise/installs/node/lts/bin/claude</string><string>-p</string>
+<string>echo 当前时间 $(date) 的 pwd 和 PATH 写入文件；请用 Bash 执行：date、pwd、echo $PATH、echo $HOME 并把结果写到 /Users/ai/github/my_projects/mindgap/spike/out/launchd-ok.txt</string>
+<string>--permission-mode</string><string>bypassPermissions</string>
+<string>--no-session-persistence</string></array>
+<key>StartInterval</key><integer>30</integer>
+<key>StandardOutPath</key><string>/Users/ai/github/my_projects/mindgap/spike/out/launchd-stdout.txt</string>
+<key>StandardErrorPath</key><string>/Users/ai/github/my_projects/mindgap/spike/out/launchd-stderr.txt</string>
+</dict></plist>
